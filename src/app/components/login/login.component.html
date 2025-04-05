@@ -45,7 +45,7 @@
 
           </div>
         </div>
-        <button type="submit" class="bg-primary rounded-md text-white text-center uppercase w-full py-2.5 my-2.5">Sign
+        <button [disabled]="loginForm.invalid" type="submit" class="bg-primary rounded-md text-white text-center uppercase w-full py-2.5 my-2.5 disabled:bg-gray-200">Sign
           In</button>
       </form>
 

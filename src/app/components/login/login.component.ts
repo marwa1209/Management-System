@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class LoginComponent {
   //injected services
 
   _LoginService: LoginService = inject(LoginService);
+  _ToasterService:ToastrService=inject(ToastrService);
   loginForm = new FormGroup({
     username: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [
@@ -27,13 +29,17 @@ export class LoginComponent {
   }
   onSubmit(data: FormGroup) {
     this.markAllAsTouched();
-    console.log(this.loginForm.value);
     if (this.loginForm.invalid) return;
     this._LoginService.login(data.value).subscribe({
       next: (res) => {
         console.log(res);
       },
-      error: (error) => console.error(error),
+      error: (err) => {
+        this._ToasterService.error(err.error.message);
+      },
+      complete: () => {
+        this._ToasterService.success('Logged in successfully!');
+      },
     });
   }
 }
