@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/services/auth/login.service';
 
@@ -14,6 +15,7 @@ export class LoginComponent {
 
   _LoginService: LoginService = inject(LoginService);
   _ToasterService:ToastrService=inject(ToastrService);
+  _Router:Router=inject(Router);
   loginForm = new FormGroup({
     username: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [
@@ -33,12 +35,14 @@ export class LoginComponent {
     this._LoginService.login(data.value).subscribe({
       next: (res) => {
         console.log(res);
+        localStorage.setItem('token',res.accessToken);
       },
       error: (err) => {
         this._ToasterService.error(err.error.message);
       },
       complete: () => {
         this._ToasterService.success('Logged in successfully!');
+        this._Router.navigate(['/home']);
       },
     });
   }
