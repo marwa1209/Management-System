@@ -1,0 +1,48 @@
+<div class="p-8 bg-gray-100">
+  <div class="flex items-center justify-between pb-2.5 border-b border-b-gray-300">
+    <p class="font-bold">Users List</p>
+    <button class="bg-primary text-white p-2.5">Add New User</button>
+  </div>
+  <div class="relative overflow-x-auto my-4">
+    <table class="w-full text-sm text-left  text-gray-500 table-auto border-separate border-spacing-y-4 ">
+      <thead class="text-xs text-[#ACACAC] font-semibold">
+        <tr>
+          <th scope="col" class="px-6 py-3"></th>
+          <th scope="col" class="px-6 py-3">
+            Name </th>
+          <th scope="col" class="px-6 py-3">
+            Email
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Phone
+          </th>
+          <!-- <th scope="col" class="px-6 py-3">
+            Enroll Number
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Date of admission </th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="listUsers">
+          <tr *ngFor="let user of listUsers"
+            class="bg-white rounded-md p-2.5 ">
+            <th scope="row">
+              <img [src]="user.image" [alt]="user.firstName" class="w-16 h-14 rounded-md"/>
+            </th>
+            <td class="px-6 py-4">
+              {{user.firstName + " " + user.maidenName + " " + user.lastName}}
+            </td>
+            <td class="px-6 py-4">
+             {{user.email}}
+            </td>
+            <td class="px-6 py-4">
+              {{user.phone}}
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+</div>

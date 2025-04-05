@@ -7,8 +7,20 @@ import { homeGuard } from './core/guards/home.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent ,canActivate:[homeGuard] },
-  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [homeGuard] },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [authGuard],
+    children: [
+      {path:'',redirectTo:'users',pathMatch: 'full'},
+      {
+        path: 'users',
+        loadChildren: () =>
+          import('./users/users.module').then((m) => m.UsersModule),
+      },
+    ],
+  },
 
   { path: '**', redirectTo: 'login' },
 ];

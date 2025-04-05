@@ -1,9 +1,6 @@
 <div class="bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-center h-screen ">
   <div class="bg-white rounded-[20px] p-10 md:min-w-[475px]">
-    <p
-      class="mb-14 relative before:content-[''] before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-4 before:h-full before:w-1 before:bg-secondary text-black font-bold text-2xl">
-      User Management System
-    </p>
+    <app-section-header text="User Management System" />
     <div class="flex flex-col items-center justify-center">
       <h1 class="text-black font-bold text-2xl mb-2">Sign In</h1>
       <p class="text-sm text-[#6C6C6C]">Enter your credentials to access your account</p>
@@ -13,7 +10,7 @@
           <div class="relative">
             <input type="email" id="username"
               class="border border-[#E5E5E5] text-gray-900 text-sm rounded-md  block w-full p-2.5"
-              placeholder="Enter your email" formControlName="username"  name="username"/>
+              placeholder="Enter your email" formControlName="username" name="username" />
             <i class="fa-solid fa-envelope absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
           </div>
           <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched "
@@ -45,7 +42,8 @@
 
           </div>
         </div>
-        <button [disabled]="loginForm.invalid" type="submit" class="bg-primary rounded-md text-white text-center uppercase w-full py-2.5 my-2.5 disabled:bg-gray-200">Sign
+        <button [disabled]="loginForm.invalid" type="submit"
+          class="bg-primary rounded-md text-white text-center uppercase w-full py-2.5 my-2.5 disabled:bg-gray-200">Sign
           In</button>
       </form>
 
