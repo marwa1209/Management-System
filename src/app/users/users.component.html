@@ -37,7 +37,7 @@
             <td class="px-6 py-4">
               {{user.phone}}
             </td>
-            <td class="px-1 py-4 cursor-pointer">
+            <td class="px-1 py-4 cursor-pointer " (click)="editUser(user.id)">
               <i class="fa-solid fa-pen text-primary"></i>
             </td>
             <td class="px-1 py-4 cursor-pointer" (click)="deleteUser(user.id)">

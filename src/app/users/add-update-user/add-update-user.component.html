@@ -1,0 +1,97 @@
+<div class="h-full flex flex-col">
+  <div class="pb-2.5 border-b border-b-gray-300">
+    <p class="font-bold"> {{label}} User</p>
+  </div>
+
+  <div class="flex-1 flex items-center justify-center ">
+    <form class="rounded-[20px] shadow p-14 bg-white w-10/12 text-[#6C6C6C]" [formGroup]="userForm"
+        (submit)="onSubmit()">
+      <div class="mb-5 flex items-center gap-8 ">
+        <div class="w-full">
+          <label for="firstName" class="block mb-2 text-sm ">First Name</label>
+          <input type="text" id="firstName"
+            class="border border-[#E5E5E5]  text-sm rounded-md  block w-full p-2.5 bg-[#F8F8F8] outline-none"
+            placeholder="Enter your First Name" formControlName="firstName" name="firstName" />
+          <div class="min-h-[1.25rem] mt-1 text-red-500 text-sm">
+            <span *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched ">
+              <span *ngIf="userForm.get('firstName')?.errors?.['required']">First Name is required</span>
+            </span>
+          </div>
+        </div>
+        <div class="w-full">
+          <label for="lastName" class="block mb-2 text-sm ">Last Name</label>
+          <input type="text" id="lastName"
+            class="border border-[#E5E5E5]  text-sm rounded-md  block w-full p-2.5 bg-[#F8F8F8] outline-none"
+            placeholder="Enter your Last Name" formControlName="lastName" name="lastName" />
+          <div class="min-h-[1.25rem] mt-1 text-red-500 text-sm">
+            <span *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched ">
+              <span *ngIf="userForm.get('lastName')?.errors?.['required']">Last Name is required</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="mb-5 flex items-center gap-8 ">
+        <div class="w-full ">
+          <label for="email" class="block mb-2 text-sm ">Email</label>
+          <input type="email" id="email"
+            class="border border-[#E5E5E5]  text-sm rounded-md  block w-full p-2.5 bg-[#F8F8F8] outline-none"
+            placeholder="Enter your Email" formControlName="email" name="email" />
+          <div class="min-h-[1.25rem] mt-1 text-red-500 text-sm">
+
+            <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched ">
+              <span *ngIf="userForm.get('email')?.errors?.['required']">Email is required</span>
+              <span *ngIf="userForm.get('email')?.errors?.['email']">Enter A Valid Email </span>
+            </div>
+          </div>
+        </div>
+        <div class="w-full ">
+          <label for="age" class="block mb-2 text-sm ">Age</label>
+          <input type="number" id="age"
+            class="border border-[#E5E5E5]  text-sm rounded-md  block w-full p-2.5 bg-[#F8F8F8] outline-none"
+            placeholder="Enter your Age" formControlName="age" name="age" />
+          <div class="min-h-[1.25rem] mt-1 text-red-500 text-sm">
+            <div *ngIf="userForm.get('age')?.invalid && userForm.get('age')?.touched ">
+              <span *ngIf="userForm.get('age')?.errors?.['required']">Age is required</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-5 flex items-center gap-8 ">
+        <div class="w-full ">
+          <label for="phone" class="block mb-2 text-sm ">Phone Number</label>
+          <input type="tel" id="phone"
+            class="border border-[#E5E5E5]  text-sm rounded-md  block w-full p-2.5 bg-[#F8F8F8] outline-none"
+            placeholder="Enter your Phone Number" formControlName="phone" name="phone" />
+          <div class="min-h-[1.25rem] mt-1 text-red-500 text-sm">
+
+            <div *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched ">
+              <span *ngIf="userForm.get('phone')?.errors?.['required']">Phone is required</span>
+              <span *ngIf="userForm.get('phone')?.errors?.['pattern']">Enter A Valid Phone Number</span>
+            </div>
+          </div>
+        </div>
+        <div class="w-full ">
+          <label for="birthDate" class="block mb-2 text-sm ">birth Date</label>
+          <input type="data" id="birthDate"
+            class="border border-[#E5E5E5]  text-sm rounded-md  block w-full p-2.5 bg-[#F8F8F8] outline-none"
+            placeholder="Enter your Birth Date" formControlName="birthDate" name="birthDate" />
+          <div class="min-h-[1.25rem] mt-1 text-red-500 text-sm">
+
+            <div *ngIf="userForm.get('birthDate')?.invalid && userForm.get('birthDate')?.touched ">
+              <span *ngIf="userForm.get('birthDate')?.errors?.['invalidDate']">Please enter a valid date in the
+                format <span class="text-base">YYYY-MM-DD</span>.</span>
+              <span *ngIf="userForm.get('birthDate')?.errors?.['futureDate']">Birth date can't be in the
+                future.</span>
+              <span *ngIf="userForm.get('birthDate')?.errors?.['tooOld']">Age cannot be more than 120 years.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full flex items-center justify-center">
+        <button type="submit" [disabled]="userForm.invalid || userForm.pristine"
+          class="bg-primary w-1/2 rounded-md text-white text-center uppercase  py-2.5 my-2.5 disabled:bg-gray-200">{{label}}
+          User</button>
+      </div>
+    </form>
+  </div>
+</div>

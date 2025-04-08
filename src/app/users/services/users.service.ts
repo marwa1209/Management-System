@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 export class UsersService {
   private _HttpClient: HttpClient = inject(HttpClient);
 
-  getUsers(skip = 0, limit = 30): Observable<any> {
+  getUsers(skip = 0, limit = 30, searchQuery=''): Observable<any> {
     return this._HttpClient.get(
-      `https://dummyjson.com/users?skip=${skip}&limit=${limit}`
+      `https://dummyjson.com/users/search?q=${searchQuery}&skip=${skip}&limit=${limit}`
     );
   }
   deleteUser(id: number): Observable<any> {
@@ -19,4 +19,11 @@ export class UsersService {
   addNewUser(data: any): Observable<any> {
     return this._HttpClient.post('https://dummyjson.com/users/add', data);
   }
+  getUser(id: number): Observable<any> {
+    return this._HttpClient.get(`https://dummyjson.com/users/${id}`);
+  }
+  updateUser(id: number, data: any): Observable<any> {
+    return this._HttpClient.put(`https://dummyjson.com/users/${id}`, data);
+  }
 }
+
