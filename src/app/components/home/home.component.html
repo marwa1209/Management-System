@@ -1,9 +1,9 @@
-
-<div class="h-screen ">
+<div class="h-screen flex">
   <app-side-bar />
-        <div class="col-span-10  ml-[270px]">
-          <app-nav-bar/>
-          <router-outlet></router-outlet>
-
+  <div class="ml-[270px] flex flex-col flex-1">
+    <app-nav-bar />
+    <div class="flex-1 overflow-y-auto p-8 bg-gray-100">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

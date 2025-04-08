@@ -16,7 +16,7 @@
           <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched "
             class="text-red-500 text-sm">
             <span *ngIf="loginForm.get('username')?.errors?.['required']">Email is required</span>
-            <span *ngIf="loginForm.get('username')?.errors?.['email']">Enter A Valid Email </span>
+            <!-- <span *ngIf="loginForm.get('username')?.errors?.['email']">Enter A Valid Email </span> -->
           </div>
         </div>
         <div class="mb-5">

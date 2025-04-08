@@ -11,4 +11,10 @@ export class UsersService {
   getUsers(): Observable<any> {
     return this._HttpClient.get('https://dummyjson.com/users');
   }
+  deleteUser(id: number): Observable<any> {
+    return this._HttpClient.delete(`https://dummyjson.com/users/${id}`);
+  }
+  addNewUser(data: any): Observable<any> {
+    return this._HttpClient.post('https://dummyjson.com/users/add', data);
+  }
 }

@@ -2,16 +2,20 @@
   <app-section-header text="UMS" />
   <div class="flex flex-col justify-between items-center flex-1">
     <div class="text-lg font-bold text-black flex flex-col gap-3 items-center justify-center">
-      <img src="" alt="userImage" class="mb-2 bg-red-900 rounded-full h-32 w-32" />
-      <p>jjj</p>
+      <img [src]="loggedInUserData.image" [alt]="loggedInUserData.firstName"
+        class="mb-2 bg-red-900 rounded-full h-28 w-28" />
+      <p>{{loggedInUserData.firstName}}</p>
       <p class="text-primary text-sm font-medium">admin</p>
     </div>
 
     <div>
-      ggg
+      <ul>
+        <li class="px-6 py-1 text-center mb-3" >Home</li>
+        <li class="px-6 py-1 text-center mb-3" routerLink="/home/users" routerLinkActive="bg-primary text-white ">Users List</li>
+              </ul>
     </div>
 
-    <div class="mb-4">
+    <div class="mb-4 cursor-pointer" (click)="logOut()">
       logout
     </div>
   </div>

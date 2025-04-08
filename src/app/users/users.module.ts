@@ -5,11 +5,13 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared-module/shared.module';
+import { AddUserComponent } from './add-user/add-user.component';
 
 
 @NgModule({
   declarations: [
-    UsersComponent
+    UsersComponent,
+    AddUserComponent
   ],
   imports: [
     CommonModule,
