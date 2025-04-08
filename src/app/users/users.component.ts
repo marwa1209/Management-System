@@ -29,10 +29,10 @@ export class UsersComponent {
       this.updatedUser = JSON.parse(updatedUser);
       localStorage.removeItem('updatedUser');
     }
+    //get search query
     this._SearchService.searchQuery$.subscribe((query) => {
       this.searchQuery=query;
       this.getAllUsers(0, 5, query);
-
     });
   }
 

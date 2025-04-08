@@ -7,23 +7,24 @@ import { Observable } from 'rxjs';
 })
 export class UsersService {
   private _HttpClient: HttpClient = inject(HttpClient);
+  private readonly baseUrl = 'https://dummyjson.com/users';
 
-  getUsers(skip = 0, limit = 30, searchQuery=''): Observable<any> {
+  getUsers(skip = 0, limit = 30, searchQuery = ''): Observable<any> {
     return this._HttpClient.get(
-      `https://dummyjson.com/users/search?q=${searchQuery}&skip=${skip}&limit=${limit}`
+      `${this.baseUrl}/search?q=${searchQuery}&skip=${skip}&limit=${limit}`
     );
   }
   deleteUser(id: number): Observable<any> {
-    return this._HttpClient.delete(`https://dummyjson.com/users/${id}`);
+    return this._HttpClient.delete(`${this.baseUrl}/${id}`);
   }
   addNewUser(data: any): Observable<any> {
-    return this._HttpClient.post('https://dummyjson.com/users/add', data);
+    return this._HttpClient.post(`${this.baseUrl}/add`, data);
   }
   getUser(id: number): Observable<any> {
-    return this._HttpClient.get(`https://dummyjson.com/users/${id}`);
+    return this._HttpClient.get(`${this.baseUrl}/${id}`);
   }
   updateUser(id: number, data: any): Observable<any> {
-    return this._HttpClient.put(`https://dummyjson.com/users/${id}`, data);
+    return this._HttpClient.put(`${this.baseUrl}/${id}`, data);
   }
 }
 
