@@ -9,7 +9,8 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators }
 export class AddUpdateUserComponent {
   @Input() initialData: any = null;
   @Output() formSubmit = new EventEmitter<FormGroup>();
-  @Input() label: 'Add New' | 'Update' = 'Add New';
+  @Input() label: 'Add New User' | 'Update User' | 'Profile' = 'Add New User';
+  @Input() isProfile:boolean=false;
   userForm = new FormGroup({
     firstName: new FormControl(null, Validators.required),
     lastName: new FormControl(null, Validators.required),

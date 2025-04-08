@@ -8,10 +8,11 @@ import { AddUserComponent } from './add-user/add-user.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { AddUpdateUserComponent } from './add-update-user/add-update-user.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
-  declarations: [UsersComponent, AddUserComponent, UpdateUserComponent, AddUpdateUserComponent],
+  declarations: [UsersComponent, AddUserComponent, UpdateUserComponent, AddUpdateUserComponent, ProfileComponent],
   imports: [CommonModule, UsersRoutingModule, SharedModule, MatPaginatorModule],
 })
 export class UsersModule {}

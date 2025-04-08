@@ -10,9 +10,14 @@
 
     <div>
       <ul>
-        <li class="px-6 py-1 text-center mb-3" >Home</li>
-        <li class="px-6 py-1 text-center mb-3" routerLink="/home/users" routerLinkActive="bg-primary text-white ">Users List</li>
-              </ul>
+        <li class="px-6 py-1 text-center mb-3 cursor-pointer" routerLinkActive="bg-primary text-white ">Home</li>
+        <li class="px-6 py-1 text-center mb-3 cursor-pointer" routerLink="/home/users"
+          routerLinkActive="bg-primary text-white " [routerLinkActiveOptions]="{ exact: true }">Users List</li>
+        <li class="px-6 py-1 text-center mb-3 cursor-pointer" routerLink="/home/users/add-user"
+          routerLinkActive="bg-primary text-white" [routerLinkActiveOptions]="{ exact: true }">Add User</li>
+        <li class="px-6 py-1 text-center mb-3 cursor-pointer" routerLink="/home/users/profile"
+          routerLinkActive="bg-primary text-white" [routerLinkActiveOptions]="{ exact: true }">Profile</li>
+      </ul>
     </div>
 
     <div class="mb-4 cursor-pointer" (click)="logOut()">
