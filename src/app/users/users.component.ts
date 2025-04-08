@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { UsersService } from './services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-users',
@@ -9,27 +10,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UsersComponent {
   listUsers: any[] = [];
-  newUser:any;
+  newUser: any;
   allData: any;
   private _UsersService: UsersService = inject(UsersService);
   private _Router: Router = inject(Router);
-  private _ActivatedRoute: ActivatedRoute = inject(ActivatedRoute);
   ngOnInit() {
-    this.getAllUsers();
-    this._ActivatedRoute.queryParams.subscribe((params) => {
-      if (params['newUser']) {
-       this.newUser = JSON.parse(params['newUser']);
-        console.log(this.newUser);
-
-      }
-    });
+    const newUser = localStorage.getItem('newUser');
+    if (newUser) {
+      this.newUser = JSON.parse(newUser);
+      localStorage.removeItem('newUser');
+    }
+    this.getAllUsers(0,5);
   }
-  getAllUsers() {
-    this._UsersService.getUsers().subscribe({
+
+  getAllUsers(skip?:number , itemPerPage?:number) {
+    this._UsersService.getUsers(skip, itemPerPage).subscribe({
       next: (res) => {
         this.allData = res;
         this.listUsers = res.users;
-        this.listUsers.unshift(this.newUser);
+
+        if (this.newUser != undefined) this.listUsers.unshift(this.newUser);
       },
       error: (err) => console.error('Error:', err),
       complete: () => console.log('Users fetched!'),
@@ -46,5 +46,12 @@ export class UsersComponent {
   }
   addNewUser() {
     this._Router.navigate(['home/users/add-user']);
+  }
+
+  onPageChange(event: PageEvent) {
+    const skip = event.pageIndex * event.pageSize;
+    const take = event.pageSize;
+
+    this.getAllUsers(skip, take);
   }
 }

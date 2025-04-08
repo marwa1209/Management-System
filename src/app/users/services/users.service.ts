@@ -8,8 +8,10 @@ import { Observable } from 'rxjs';
 export class UsersService {
   private _HttpClient: HttpClient = inject(HttpClient);
 
-  getUsers(): Observable<any> {
-    return this._HttpClient.get('https://dummyjson.com/users');
+  getUsers(skip = 0, limit = 30): Observable<any> {
+    return this._HttpClient.get(
+      `https://dummyjson.com/users?skip=${skip}&limit=${limit}`
+    );
   }
   deleteUser(id: number): Observable<any> {
     return this._HttpClient.delete(`https://dummyjson.com/users/${id}`);

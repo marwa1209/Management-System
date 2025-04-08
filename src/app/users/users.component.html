@@ -26,7 +26,7 @@
         <ng-container *ngIf="listUsers">
           <tr *ngFor="let user of listUsers" class="bg-white rounded-md p-2.5 ">
             <th scope="row">
-              <img [src]="user.image" [alt]="user.firstName" class="w-16 h-14 rounded-md" />
+              <img [src]="user?.image" [alt]="user.firstName" class="w-16 h-14 rounded-md" />
             </th>
             <td class="px-6 py-4">
               {{user.firstName + " " + user.maidenName + " " + user.lastName}}
@@ -48,4 +48,5 @@
       </tbody>
     </table>
   </div>
-
+<mat-paginator [length]="allData.total" [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" (page)="onPageChange($event)">
+</mat-paginator>

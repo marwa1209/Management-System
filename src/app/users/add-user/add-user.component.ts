@@ -64,7 +64,8 @@ export class AddUserComponent {
     if (this.AddUserForm.invalid) return;
     this._UserService.addNewUser(data.value).subscribe({
       next: (res) => {
-      this._Router.navigate(['/home/users'], { queryParams: { newUser: JSON.stringify(res) } });      },
+      localStorage.setItem('newUser', JSON.stringify(res));
+      this._Router.navigate(['/home/users']);      },
       error: (err) => {
         this._ToasterService.error(err.error.message);
       },
